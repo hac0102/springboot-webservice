@@ -1,5 +1,7 @@
 package com.hac.springboot.web;
 
+import com.hac.springboot.config.auth.dto.SessionUser;
+import com.hac.springboot.domain.user.User;
 import com.hac.springboot.service.posts.PostsService;
 import com.hac.springboot.web.dto.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -8,16 +10,26 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.servlet.http.HttpSession;
+
 @RequiredArgsConstructor
 @Controller
 public class IndexController {
     // 머스테치 스타터 때문에 문자열로 반환할때 자동으로 앞의 경로와 .mustache 확장자가 붙음 View Resolver 처리
     // view resolver Url 요청의 결과를 전달할 타입과 값을 지정하는 관리자 격
     private final PostsService postsService;
+    private final HttpSession httpSession;
 
     @GetMapping("/")
     public String index(Model model) {
         model.addAttribute("posts", postsService.findAllDesc());
+
+        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+
+        if(user != null) {
+            model.addAttribute("userName", user.getName());
+        }
+
         return "index";
     }
 
