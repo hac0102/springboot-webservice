@@ -16,6 +16,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDateTime;
@@ -43,6 +44,7 @@ public class PostsApiControllerTest {
     }
 
     @Test
+    @WithMockUser(roles="USER")
     public void Posts_등록된다() throws Exception {
         // PostsApiController에 @PutMapping 하면 오류남
         // @PostMapping 으로 바꿔 줘야됨ㅇ
@@ -67,8 +69,8 @@ public class PostsApiControllerTest {
     }
 
     @Test
+    @WithMockUser(roles="USER")
     public void Posts_수정() throws Exception {
-
         Posts savedPosts = postsRepository.save(Posts.builder()
                 .title("title")
                 .content("content")
