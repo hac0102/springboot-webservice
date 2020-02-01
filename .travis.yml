@@ -33,6 +33,9 @@ deploy:       # s3로 파일 업로드 또는 CodeDeploy로 배보 등 외부서
       local_dir: deploy #before_deploy 에서 생성한 디렉토리, 해당위치의 파일들만 S3로 전송
       wait-until-deployed: true
 
+
+
+
   #- provider: codedeploy
    #   access_key_id: $AWS_ACCESS_KEY # 트레비스 rep settings 값
     #  secret_access_key: $AWS_SECRET_KEY
