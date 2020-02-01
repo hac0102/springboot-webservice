@@ -16,7 +16,6 @@ cache:
 #master 브랜치에 푸시되었을때 수행하는 명령어, 프로젝트 내부에 둔 gradlew을 통해 clean & build를 수행
 script: "./gradlew clean build"
 
-
 before_deploy:      # deploy가 실행되기전에 수행, codeDeploy는 jar파일은 인식못함 jar+기타 설정파일들을 모아 압축
   - zip -r springboot-webservice *     # 현재 위치의 모든파일을 springboot-webservice 이름으로 .zip 압축
   - mkdir -p deploy                    # deploy라는 디렉토리를 travis ci가 실행중인 위치에서 생성
