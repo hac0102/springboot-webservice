@@ -24,25 +24,25 @@ before_deploy:      # deploy가 실행되기전에 수행, codeDeploy는 jar파�
 
 deploy:       # s3로 파일 업로드 또는 CodeDeploy로 배보 등 외부서비스와 연동될 행위를 선언
   - provider: s3
-    access_key_id: $AWS_ACCESS_KEY # Travis repo settings에 설정된 값
-    secret_access_key: $AWS_SECRET_KEY #
-    bucket: hac0102-springboot-build
-    region: ap-northeast-2
-    skip_cleanup: trup
-    acl: private # zip 파일 접근을 private로
-    local_dir: deploy #before_deploy 에서 생성한 디렉토리, 해당위치의 파일들만 S3로 전송
-    wait-until-deployed: true
+      access_key_id: $AWS_ACCESS_KEY # Travis repo settings에 설정된 값
+      secret_access_key: $AWS_SECRET_KEY
+      bucket: hac0102-springboot-build
+      region: ap-northeast-2
+      skip_cleanup: trup
+      acl: private # zip 파일 접근을 private로
+      local_dir: deploy #before_deploy 에서 생성한 디렉토리, 해당위치의 파일들만 S3로 전송
+      wait-until-deployed: true
 
   - provider: codedeploy
-    access_key_id: $AWS_ACCESS_KEY # 트레비스 rep settings 값
-    secret_access_key: $AWS_SECRET_KEY
-    bucket: hac0102-springboot-build
-    key: springboot-webservice.zip
-    bundle_type: zip
-    application: springboot-webservice
-    deployment_group: springboot-webservice-group
-    region: ap-northeast-2
-    wait-until-deployed: true
+      access_key_id: $AWS_ACCESS_KEY # 트레비스 rep settings 값
+      secret_access_key: $AWS_SECRET_KEY
+      bucket: hac0102-springboot-build
+      key: springboot-webservice.zip
+      bundle_type: zip
+      application: springboot-webservice
+      deployment_group: springboot-webservice-group
+      region: ap-northeast-2
+      wait-until-deployed: true
 
 
 #CI 실행 완료 시 메일로 알람
