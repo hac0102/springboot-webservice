@@ -32,6 +32,16 @@ deploy:
     local_dir: deployRe   #brfore_deploy에서 생성한 디렉토리
     wait-until-deployed: true
 
+  - provider: codedeploy
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+    bucket: hac0102-springboot-build
+    key: springboot-webservice-re.zip
+    bundle_type: zip
+    application: springboot-webservice-re
+    deployment_group: springboot-webservice-re-group
+    region: ap-northeast-2
+    wait-until-deployed: true
 
 #CI 실행 완료 시 메일로 알람
 notifications:
